@@ -1,23 +1,27 @@
-import { LionInput } from '@lion/ui/input';
-import { css } from 'lit';
+import { LionInput } from "@lion/ui/input";
+import { css } from "lit";
 
 class SimpleInput extends LionInput {
   static get styles() {
     return [
       super.styles,
       css`
-        /* your custom styles here */
         :host {
-          --my-input-background-color: lightblue;
-          --my-input-border-radius: 5px;
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          margin-bottom: 15px;
         }
-        .form-control {
-          background-color: var(--my-input-background-color);
-          border-radius: var(--my-input-border-radius);
+
+        :host:focus {
+          border-color: #007bff;
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
       `,
     ];
   }
 }
 
-customElements.define('simple-input', SimpleInput);
+customElements.define("simple-input", SimpleInput);

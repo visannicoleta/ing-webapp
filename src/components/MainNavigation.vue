@@ -6,18 +6,44 @@
       </div>
       <nav>
         <ul>
-          <li><router-link to="/home" :class="{ selected: selectedLink === 'home' }" @click="selectLink('home')">
-            <font-awesome-icon icon="home" />
-            <span>Home</span>
-          </router-link></li>
-          <li><router-link to="/contact" :class="{ selected: selectedLink === 'contact' }" @click="selectLink('contact')">
-            <font-awesome-icon icon="envelope" />
-            <span>Contact</span>
-          </router-link></li>
-          <li><router-link to="/" :class="{ selected: selectedLink === 'login' }" @click="selectLink('login')">
-            <font-awesome-icon icon="sign-in-alt" />
-            <span>My account</span>
-          </router-link></li>
+          <li>
+            <router-link
+              to="/home"
+              :class="{ selected: selectedLink === 'home' }"
+              @click="selectLink('home')"
+            >
+              <font-awesome-icon icon="home" />
+              <span>Home</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              to="/contact"
+              :class="{ selected: selectedLink === 'contact' }"
+              @click="selectLink('contact')"
+            >
+              <font-awesome-icon icon="envelope" />
+              <span>Contact</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              v-if="isAuthenticated"
+              to="/myaccount"
+              :class="{ selected: selectedLink === 'myaccount' }"
+              @click="selectLink('myaccount')"
+            >
+              <font-awesome-icon icon="sign-in-alt" /> <span>My Account</span>
+            </router-link>
+            <router-link
+              v-else
+              to="/"
+              :class="{ selected: selectedLink === '' }"
+              @click="selectLink('')"
+            >
+              <font-awesome-icon icon="sign-in-alt" /> <span>Login</span>
+            </router-link>
+          </li>
         </ul>
       </nav>
     </header>
@@ -25,19 +51,27 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from "vuex";
 
 export default {
-  name: 'MainNavigation',
+  name: "MainNavigation",
   computed: {
-    ...mapState(['selectedLink']),
+    ...mapState(["selectedLink", "user"]),
+    isAuthenticated() { if (this.user && this.user.isAuthenticated) console.log('this.user.isAuthenticated',this.user); return this.user && this.user.isAuthenticated; }
   },
   methods: {
-    ...mapActions(['updateSelectedLink']),
+    ...mapActions(["updateSelectedLink", "loginUser", "logoutUser"]),
     selectLink(link) {
       this.updateSelectedLink(link);
     },
   },
+  watch: { 
+    user(newVal, oldVal) { 
+      console.log('user',this.user);
+      console.log(this.user.isAuthenticated);
+      console.log('User state changed:', newVal, oldVal); 
+    } 
+  }
 };
 </script>
 
@@ -46,7 +80,6 @@ export default {
   display: block;
   background-color: #f0f0f0;
   color: #333;
-  border-bottom: 2px solid #ff6600; /* Orange border */
 }
 header {
   display: flex;
@@ -54,10 +87,9 @@ header {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .logo img {
-  height: 150px; /* Adjust as needed */
   width: auto;
 }
 nav ul {

@@ -18,8 +18,8 @@ class SimpleButton extends LionButton {
           text-align: center;
           line-height: inherit;
         }
-        :host:hover {
-          background-color: #007bff;
+        :host(:hover) {
+          background-color: #076fcf;
         }
       `,
     ];

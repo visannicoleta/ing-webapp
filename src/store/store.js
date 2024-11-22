@@ -1,22 +1,38 @@
 import { createStore } from 'vuex';
 
 const store = createStore({
-  state: {
-    selectedLink: 'home', // Default selected link
-  },
-  mutations: {
-    setSelectedLink(state, link) {
-      state.selectedLink = link;
+    state: {
+        selectedLink: 'login', // Default selected link
+        user: { isAuthenticated: false }
     },
-  },
-  actions: {
-    updateSelectedLink({ commit }, link) {
-      commit('setSelectedLink', link);
+    mutations: {
+        setSelectedLink(state, link) {
+            state.selectedLink = link;
+        },
+        setUser(state, user) {
+            state.user = user;
+        },
     },
-  },
-  getters: {
-    selectedLink: (state) => state.selectedLink,
-  },
+    actions: {
+        updateSelectedLink({ commit }, link) {
+            commit('setSelectedLink', link);
+        },
+        loginUser({ commit }, user) {
+            user.isAuthenticated = true;
+            commit('setUser', user);
+        },
+        logoutUser({ commit }) {
+            const user = { 
+                isAuthenticated: false
+            };
+            commit('setUser', user);
+        },
+    },
+    getters: {
+        selectedLink: (state) => state.selectedLink,
+        isAuthenticated: (state) => state.user.isAuthenticated, // Use isAuthenticated from state
+        user: (state) => state.user,
+    },
 });
 
 export default store;
