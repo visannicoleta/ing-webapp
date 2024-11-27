@@ -39,9 +39,27 @@ export default {
       username: "user1",
       password: "pass1",
       users: [
-        { username: "user1", password: "pass1" },
-        { username: "user2", password: "pass2" },
-        { username: "user3", password: "pass3" },
+        { 
+          username: "user1", 
+          password: "pass1", 
+          fullName: "Alice Johnson", 
+          email: "alice.johnson@ingbank.com", 
+          phoneNumber: "+1234902134" 
+        },
+        { 
+          username: "user2", 
+          password: "pass2", 
+          fullName: "Bob Smith", 
+          email: "bob.smith@ingbank.com", 
+          phoneNumber: "+2345621222" 
+        },
+        { 
+          username: "user3", 
+          password: "pass3", 
+          fullName: "Charlie Brown", 
+          email: "charlie.brown@ingbank.com", 
+          phoneNumber: "+3456725765" 
+        },
       ],
       message: "",
       isSuccess: false,
@@ -54,10 +72,10 @@ export default {
   methods: {
     ...mapActions(['updateSelectedLink', 'loginUser']),
     handleLogin() {
-      if (this.userExists(this.username, this.password)) {
+      const user = this.userExists(this.username, this.password);
+      if (user) {
         this.message = 'Login successful';
         this.isSuccess = true;
-        const user = { username: this.username };
         this.loginUser(user); // Store user in Vuex
         this.updateSelectedLink('account'); // Update selected link
         this.$router.push('/myaccount'); // Redirect to account page
@@ -67,7 +85,7 @@ export default {
       }
     },
     userExists(username, password) {
-      return this.users.some(
+      return this.users.find(
         (user) => user.username === username && user.password === password );
     },
   },

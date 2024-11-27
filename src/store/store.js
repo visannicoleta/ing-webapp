@@ -30,7 +30,7 @@ const store = createStore({
     },
     getters: {
         selectedLink: (state) => state.selectedLink,
-        isAuthenticated: (state) => state.user.isAuthenticated, // Use isAuthenticated from state
+        isAuthenticated: (state) => state.user.isAuthenticated,
         user: (state) => state.user,
     },
 });

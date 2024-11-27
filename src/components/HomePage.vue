@@ -1,33 +1,39 @@
 <template>
   <div class="home-page">
-    <h2>Welcome to ING Bank, {{ user.username }}</h2>
+    <h2>Welcome to ING Bank {{ user.username }}</h2>
     <p>{{ ingContent }}</p>
     <!-- Adding a Section for Products and Services -->
     <section class="products-services">
       <h3>Our Products and Services</h3>
       <div class="service">
-        <img src="path/to/savings.jpg" alt="Savings" />
-        <h4>Savings Accounts</h4>
-        <p>
-          Save money with competitive interest rates and secure deposits.
-          <a href="#savings">Learn more</a>.
-        </p>
+        <img src="../assets/savings.jpg" alt="Savings" />
+        <div class="service-text">
+          <h4>Savings Accounts</h4>
+          <p>
+            Save money with competitive interest rates and secure deposits.
+            <a href="#savings">Learn more</a>.
+          </p>
+        </div>
       </div>
       <div class="service">
-        <img src="path/to/loans.jpg" alt="Loans" />
-        <h4>Personal Loans</h4>
-        <p>
-          Get the financial help you need with flexible loan options.
-          <a href="#loans">Find out more</a>.
-        </p>
+        <img src="../assets/loans.jpg" alt="Loans" />
+        <div class="service-text">
+          <h4>Personal Loans</h4>
+          <p>
+            Get the financial help you need with flexible loan options.
+            <a href="#loans">Find out more</a>.
+          </p>
+        </div>
       </div>
       <div class="service">
-        <img src="path/to/mortgages.jpg" alt="Mortgages" />
-        <h4>Mortgages</h4>
-        <p>
-          We offer various mortgage solutions to help you buy your dream home.
-          <a href="#mortgages">Explore mortgages</a>.
-        </p>
+        <img src="../assets/mortgages.jpg" alt="Mortgages" />
+        <div class="service-text">
+          <h4>Mortgages</h4>
+          <p>
+            We offer various mortgage solutions to help you buy your dream home.
+            <a href="#mortgages">Explore mortgages</a>.
+          </p>
+        </div>
       </div>
     </section>
     <!-- Adding a Section for News and Updates -->
@@ -125,5 +131,28 @@ p {
 .service a:hover,
 .news-updates article a:hover {
   text-decoration: underline;
+}
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service-text {
+  margin-top: 10px;
+  text-align: center;
+} 
+@media (min-width: 1024px) {
+  .service {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .service img {
+    width: 30%; 
+    margin-right: 20px; 
+  }
+  .service-text {
+    margin-top: 0;
+    text-align: left;
+  }
 }
 </style>
