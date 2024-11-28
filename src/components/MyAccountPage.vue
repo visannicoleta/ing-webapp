@@ -26,6 +26,7 @@
   
 <script>
 import { mapGetters, mapActions } from "vuex";
+import '../lion-elements/SimpleButton';
 
 export default {
   name: "MyAccountPage",
