@@ -1,6 +1,6 @@
-# My App
+# ING Webapp
 
-Welcome to **My App**! This project is a [Vue.js](https://vuejs.org/) application designed to provide a seamless user experience with intuitive design and robust functionality.
+Welcome to **ING Webapp**! This project is a [Vue.js](https://vuejs.org/) application designed to provide a seamless user experience with intuitive design and robust functionality.
 
 ## Project setup
 ```
@@ -40,7 +40,7 @@ To run this project locally, follow these steps:
 
 2. **Navigate to the project directory:**
     ```sh
-    cd my-app
+    cd ing-webapp
     ```
 
 3. **Install dependencies:**
